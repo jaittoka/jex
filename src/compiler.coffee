@@ -12,7 +12,7 @@ compilers =
   'or':     require './compilers/compileOr'
 
 module.exports = class Compiler
-  constructor: ->
+  constructor: (@opts = {}) ->
 
   # pushes a new function score. Function score stores
   # information about what variables are defined in
@@ -37,7 +37,11 @@ module.exports = class Compiler
     @scopes[@scopes.length-1].defs[name] = isArg
     name
 
-  globalAccess: (name) -> name
+  globalAccess: (name) -> 
+    if typeof @opts.global is 'function'
+      @opts.global name
+    else
+      name
 
   # Marks a use of variable. If variable name is not found in
   # any of the scopes, it is marked as global

@@ -1,12 +1,12 @@
 parse = require './parser'
 Compiler = require './compiler'
 
-compile = (str) ->
-  c = new Compiler
+compile = (str, opts) ->
+  c = new Compiler opts
   c.compile parse str
 
-compileToFunction = (str) ->
-  c = new Compiler
+compileToFunction = (str, opts) ->
+  c = new Compiler opts
   c.compileToFunc parse str
 
 module.exports = {
