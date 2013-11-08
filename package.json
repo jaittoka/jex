@@ -1,6 +1,6 @@
 {
   "name": "jex",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scheme like expression compiler. Compiles to javascript.",
   "keywords": [ "scheme", "javascript", "compiler", "expression" ],
   "homepage": "https://github.com/jaittoka/jex",
