@@ -2,6 +2,9 @@
   "name": "jex",
   "version": "0.1.0",
   "licence": "MIT",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-coffee": "~0.7.0"
   }
 }
