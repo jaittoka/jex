@@ -30,9 +30,9 @@ the `refs` (see `Jex.compile` above).
 Source syntax
 =============
 
-exp -> apply | atomic
-apply -> '(' func param+ ')'
-atomic -> true | false | number | string | identifier
+    exp -> apply | atomic
+    apply -> '(' func param+ ')'
+    atomic -> true | false | number | string | identifier
 
 Apply
 =====
