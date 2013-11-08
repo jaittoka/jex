@@ -1,7 +1,16 @@
 {
   "name": "jex",
   "version": "0.1.0",
+  "description": "Scheme like expression compiler. Compiles to javascript.",
+  "keywords": [ "scheme", "javascript", "compiler", "expression" ],
+  "homepage": "https://github.com/jaittoka/jex",
+  "author": "Jukka Aittokallio <jukka@aittokallio.com>",
   "licence": "MIT",
+  "main": "lib/index.js",
+  "repository" : { 
+    "type" : "git",
+    "url" : "git@github.com:jaittoka/jex.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
