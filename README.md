@@ -58,7 +58,7 @@ Logical and (&&)
     (and false true)
 
 or
---
+---
 Logical or (||)
 
     (or false true)
@@ -82,7 +82,7 @@ A function closure (lamda)
     (def mul2 (func (x) (mul 2 x)))
 
 if
---
+---
 If expression
 
     (if (lt x 2) (add x 2) x)
