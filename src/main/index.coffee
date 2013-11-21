@@ -1,15 +1,27 @@
-parse = require './parser'
-Compiler = require './compiler'
+Input     = require './input'
+Lexer     = require './lexer'
+Parser    = require './parser'
+Compiler  = require './compiler'
 
 compile = (str, opts) ->
+  i = new Input str
+  l = new Lexer i
+  p = new Parser l
   c = new Compiler opts
-  c.compile parse str
+  c.compile p.parse()
 
 compileToFunction = (str, opts) ->
+  i = new Input str
+  l = new Lexer i
+  p = new Parser l
   c = new Compiler opts
-  c.compileToFunc parse str
+  c.compileToFunction p.parse()
 
 module.exports = {
+  Input
+  Lexer
+  Parser
+  Compiler
   compile
   compileToFunction
 }

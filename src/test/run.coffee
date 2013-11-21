@@ -6,9 +6,11 @@ failures = []
 
 addTest = (name, func) -> tests.push  { name, func }
 
+stripExt = (name) -> name.split('.')[0]
+
 nameFromFile = (f) -> 
-  name = f.split('.')[0]
-  if name.indexOf 'test' is 0
+  name = stripExt f
+  if name.indexOf('test') is 0
     name.substring 4
   else
     name
@@ -18,9 +20,9 @@ loadTests = (path) ->
   for f in files
     continue if f.indexOf('test') isnt 0
     try
-      e = require join path, f
+      e = require stripExt join path, f
     catch err
-      console.log "Requiring of test file #{f} failed. Error: #{err}"
+      console.log "Requiring of #{f} failed. Error: #{err}"
       continue
 
     mainName = nameFromFile f 
@@ -28,7 +30,7 @@ loadTests = (path) ->
       addTest mainName, e
     else if typeof e is 'object'
       for name, func of e
-        addTest mainName+':'+nameFromFile(name), func
+        addTest "#{mainName} - #{nameFromFile(name)}", func
     else
       console.log "Test file #{f} exported invalid value."
 
@@ -37,6 +39,7 @@ failure = (name, err) -> failures.push { name, err }
 
 run = (name, f) ->
   try
+    console.log "Running #{name}"
     f()
   catch error
     failure name, error

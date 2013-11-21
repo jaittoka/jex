@@ -89,7 +89,7 @@ module.exports = class Compiler
     else
       JSON.stringify node
 
-  compile: (node) -> 
+  compile: (node) ->
     # Reset the scopes and globals
     @scopes = []    
     @globals = {}
@@ -109,7 +109,7 @@ module.exports = class Compiler
     # that were referenced by the code
     { code, refs: (name for name, _ of @globals), locals }
 
-  compileToFunc: (node) ->
+  compileToFunction: (node) ->
     { code, refs, locals }  = @compile node
 
     localVar = 
