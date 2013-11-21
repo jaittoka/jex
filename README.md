@@ -1,7 +1,9 @@
 jex
 ===
 
-Jex is a compiler that compiles scheme like language to javascript code.
+Jex is a compiler that compiles Scheme (or Lisp) like language to javascript code.
+
+Jex is implemented in Coffee Script.
 
 Usage example (in coffee script)
 ================================
@@ -16,29 +18,30 @@ Usage example (in coffee script)
     """
 
 Jex.compile will return an object that contains the compiled code as string and array of variables
-the code uses, but not defines itself.
+the code uses, but not defines itself. It also returns locally defined variables.
 
     { 
-      code: '((f = (function(x) { return (gt(x, 1000))?("big number"):("small number"); })), f(50))',
-      refs: [ 'gt' ] 
+        code: '((f = (function(x) { return (gt(x, 1000))?("big number"):("small number"); })), f(50))',
+        refs: [ 'gt' ],
+        locals: [ 'f' ] 
     }
 
 If you want a callable javascript function instead of a code text, call `Jex.compileToFunction`. It
-will return a javascript function object extended with field `argNames` which contains
-the `refs` (see `Jex.compile` above).
+will return a javascript function object extended with field `argNames` which has same content
+than the `refs` (see `Jex.compile` above).
 
 Source syntax
 =============
 
-    exp -> apply | atomic
-    apply -> '(' func param+ ')'
+    exp -> list | atomic
+    list -> '(' exp+ ')'
     atomic -> true | false | number | string | identifier
 
 Apply
 =====
-If `func` is an identifier and its value equals to one of the compiler builtins (below), 
-then it apply is compiled with corrseponding builtin compiler. Otherwise it
-is compiled as a user function invocation.
+If first item in a list is an identifier and its value equals to one of the compiler 
+builtins (below), then it apply is compiled with corresponding builtin compiler. 
+Otherwise it is compiled as a user function invocation.
 
 Supported compiler builtins
 ===========================
@@ -86,5 +89,18 @@ if
 If expression
 
     (if (lt x 2) (add x 2) x)
+
+
+cond
+---
+Cond expression
+
+    (cond (exp1 value1) (exp2 value2) ... )
+
+Last exp can be an else expression in case of which it is used when
+none of the expressions before match. Example:
+
+    (cond ((eq x 1) 'one') ((eq x 2) 'two') (else 'something else'))
+
 
  
