@@ -145,7 +145,12 @@ describe 'Variable', ->
     assert.deepEqual f.argNames, [ 'x' ]
     assert.equal f(3), 3
 
-
+describe 'User compiler', ->
+  it 'should use user defined compiler if given', ->
+    f = Jex.compileToFunction '(concat x y "!")',
+      compilers:
+        concat: (args, c) -> ("#{c.compileNode(a)}" for a in args).join '+'
+    assert.equal f('Hello ', 'World'), 'Hello World!'
 
 
 
