@@ -14,6 +14,7 @@ compilers =
 
 module.exports = class Compiler
   constructor: (@opts = {}) ->
+    @opts.compilers ?= {}
 
   # pushes a new function score. Function score stores
   # information about what variables are defined in
@@ -77,7 +78,7 @@ module.exports = class Compiler
 
   compileApply: (arr) ->
     if @isIdentifier arr[0]
-      compiler = compilers[arr[0].name]
+      compiler = compilers[arr[0].name] or @opts.compilers[arr[0].name]
       return compiler arr[1..], @ if compiler?
     compilers['apply'] arr, @
 
@@ -126,3 +127,4 @@ module.exports = class Compiler
     # the caller needs to know them
     f.argNames = refs
     f
+
