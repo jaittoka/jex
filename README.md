@@ -1,7 +1,7 @@
 jex
 ===
 
-Jex is a compiler that compiles Scheme (or Lisp) like language to javascript code.
+Jex is a transpiler that transforms Scheme like programming language to javascript code.
 
 Jex is implemented in Coffee Script.
 
