@@ -2,6 +2,7 @@ Input     = require './input'
 Lexer     = require './lexer'
 Parser    = require './parser'
 Compiler  = require './compiler'
+RT        = require './runtime'
 
 compile = (str, opts) ->
   i = new Input str
@@ -21,6 +22,7 @@ module.exports = {
   Input
   Lexer
   Parser
+  RT
   Compiler
   compile
   compileToFunction
