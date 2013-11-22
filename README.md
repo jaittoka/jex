@@ -118,4 +118,10 @@ none of the expressions before match. Example:
     (cond ((eq x 1) 'one') ((eq x 2) 'two') (else 'something else'))
 
 
- 
+Running tests
+=============
+
+  grunt tests
+  node_modules/mocha/bin/mocha -R spec test/tests
+
+
