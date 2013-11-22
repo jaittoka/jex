@@ -109,6 +109,11 @@ describe 'If', ->
   it 'should evaluate to else expression if condition evaluates to false', ->
     f = Jex.compileToFunction '(if false 1 2)'
     assert.equal f(), 2, 'false condition didn\' work'
+  it 'should work with more comple condition', ->
+    f = Jex.compileToFunction  '(if (gt x 10) "big" "small")'
+    gt = (a, b) -> a > b
+    assert.equal f(gt, 11), 'big'
+    assert.equal f(gt, 10), 'small'
 
 describe 'Func', ->
   it 'should call the created function correctly', ->
