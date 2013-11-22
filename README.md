@@ -30,6 +30,21 @@ If you want a callable javascript function instead of a code text, call `Jex.com
 will return a javascript function object extended with field `argNames` which has same content
 than the `refs` (see `Jex.compile` above).
 
+Application defined compilers
+=============================
+Application can define its own compiler. Example:
+
+    f = Jex.compileToFunction '(concat x y "!")',
+      compilers:
+        concat: (args, c) -> ("#{c.compileNode(a)}" for a in args).join '+'
+
+    assert.equal f('Hello ', 'World'), 'Hello World!'
+
+The 'concat' is not a builtin, but here the application defines a compiler for it. 
+
+Compiler function is given the source arguments and the compiler object. Compiler 
+function can call `compileNode`-method to compile the arguments if necessary.
+
 Source syntax
 =============
 
