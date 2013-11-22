@@ -1,6 +1,6 @@
 {
   "name": "jex",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Scheme like expression compiler. Compiles to javascript.",
   "keywords": [
     "scheme",
