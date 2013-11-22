@@ -1,7 +1,6 @@
 class Input
-  constructor: (@str) ->
+  constructor: (@str, @pos = 0) ->
     @len = str.length
-    @pos = 0
 
   hasMore: () -> @pos < @len
 
