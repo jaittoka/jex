@@ -121,7 +121,7 @@ none of the expressions before match. Example:
 Running tests
 =============
 
-  grunt tests
-  node_modules/mocha/bin/mocha -R spec test/tests
+    grunt tests
+    node_modules/mocha/bin/mocha -R spec test/tests
 
 
